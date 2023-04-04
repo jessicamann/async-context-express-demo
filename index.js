@@ -1,8 +1,11 @@
 import express from 'express'
 import { randomPokemon } from './app/pokemon-namer.js'
+import { withRequestContext } from './logger/middlewares.js'
 
 const app = express()
 const port = 3000
+
+app.use(withRequestContext)
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
