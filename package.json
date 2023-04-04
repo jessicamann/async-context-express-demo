@@ -2,6 +2,7 @@
   "name": "async-context-express-demo",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
