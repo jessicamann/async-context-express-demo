@@ -1,0 +1,1 @@
+seq 1 10 | xargs -I $ -n1 -P3 curl "localhost:3000/pokemon/$"

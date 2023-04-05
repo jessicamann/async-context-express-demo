@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.get('/pokemon', async (req, res) => {
+app.get('/pokemon/:num', async (req, res) => {
     const pokemon = await randomPokemon()
     res.send(`Your lucky pokemon is...${pokemon}!`)
 })
