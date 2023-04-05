@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ctx, runWithCtx } from './context.js'
+import { logger } from './log.js';
 
 const getOrGenerateRequestId = (req) => {
     const requestId = req.header('request-id')
@@ -14,4 +15,9 @@ const withRequestContext = (req, res, next) => {
     })
 }
 
-export { withRequestContext }
+const logRequests = (req, res, next) => {
+    logger.info(`Received request: ${req.method} ${req.path}`)
+    next()
+}
+
+export { withRequestContext, logRequests }
