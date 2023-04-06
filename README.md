@@ -2,9 +2,11 @@
 
 A simple web server that uses Node's AsyncLocalStorage to pass on the request-id throughout the duration of a webrequest.
 
-A note about these contexts:
-
-Contexts should not be used as a way to propagate and pass on data needed to child processes. It should only be used to store informational data that may need to bee accessed on multiple nested level within a process & its child processes. A common example is a request-id to tie the activities throughout a web request together for logging.
+> **A note about these contexts:**
+>
+> Contexts should not be used as a way to propagate and pass on data needed to child processes. It should only be used to store informational data that may need to be accessed on multiple nested level within a process & its child processes. 
+>
+> A common example is a request-id to tie the activities throughout a web request together for logging.
 
 
 # See it in action
