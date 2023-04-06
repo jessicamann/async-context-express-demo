@@ -21,4 +21,3 @@ In a separate shell, run the following to execute 10 requests (up to 3 in parall
 ```
 ./run
 ```
-
