@@ -8,7 +8,6 @@ A simple web server that uses Node's AsyncLocalStorage to pass on the request-id
 >
 > A common example is a request-id to tie the activities throughout a web request together for logging.
 
-
 # See it in action
 
 Make sure you have node installed. This demo was created using Node v18.
@@ -31,6 +30,8 @@ In a separate shell, run the following to execute 10 requests (up to 3 in parall
 
 # How it works
 
+## Wrap all web request processing in a context
+
 An express middleware wraps every inbound webrequest within a context, as defined in the server:
 
 ```js
@@ -42,7 +43,7 @@ const port = 3000
 app.use(withRequestContext)
 ```
 
-This `withRequestContext` middleware looks first for a request-id already existing on the header of the inbound request (if you need to tie the activities of an initital trigger across services), or generates a new request-id to set in the context for the duration of the web request.
+This `withRequestContext` middleware sets a request-id in the context for the duration of the web request.
 
 The middleware itself is quite simple - it just wraps the request and moves on:
 
@@ -57,6 +58,10 @@ const withRequestContext = (req, res, next) => {
     })
 }
 ```
+
+> ⭐️💫 Checkout [OpenTelemetry](https://opentelemetry.io/) if you are looking to logs across services together. It's a much more robust solution for that purpose.
+
+## Managing context
 
 Lastly, contexts are managed separately, with explicit accessors defined to prevent polluting the context.
 
