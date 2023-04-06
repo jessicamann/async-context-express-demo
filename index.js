@@ -1,6 +1,7 @@
 import express from 'express'
 import { randomPokemon } from './app/pokemon-namer.js'
 import { withRequestContext, logRequests } from './logger/middlewares.js'
+import { logger } from './logger/log.js'
 
 const app = express()
 const port = 3000
@@ -14,10 +15,10 @@ app.get('/', (req, res) => {
 
 app.get('/pokemon/:num', async (req, res) => {
     const pokemon = await randomPokemon()
-    res.send(`Your lucky pokemon is...${pokemon}!`)
+    res.send(`Your lucky pokemon is...${pokemon}!\n`)
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    logger.info(`Example app listening on port ${port}`)
 })
 
